@@ -40,6 +40,14 @@ public class AdvertController {
 		return this.advertService.postAllAdvertFromDBWithDaniProfile(authorization, version, contentType);
 	}
 
+	@PostMapping("/post-all-dani-new-set")
+	public List<Advert> postAllAdvertsDBWithDaniProfileNewSet(@RequestHeader("Authorization") String authorization,
+			@RequestHeader("Version") String version,
+			@RequestHeader("Content-Type") String contentType) {
+		return this.advertService.postAllAdvertFromDBWithDaniProfileNewSet(authorization, version, contentType);
+	}
+
+
 	@DeleteMapping("/delete-all")
 	public List<Integer> deleteAllAdverts(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version) {
