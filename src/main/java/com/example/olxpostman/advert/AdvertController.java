@@ -22,7 +22,7 @@ public class AdvertController {
     public Advert postSpecificAdvertDB(@RequestHeader("Authorization") String authorization,
                                        @RequestHeader("Version") String version,
                                        @RequestHeader("Content-Type") String contentType,
-                                       @PathVariable Long id) throws JsonProcessingException {
+                                       @PathVariable Long id) {
         return this.advertService.postAdvertFromDB(authorization, version, contentType, id);
     }
 
@@ -40,11 +40,11 @@ public class AdvertController {
 		return this.advertService.postAllAdvertFromDBWithDaniProfile(authorization, version, contentType);
 	}
 
-	@PostMapping("/post-all-dani-new-set")
-	public List<Advert> postAllAdvertsDBWithDaniProfileNewSet(@RequestHeader("Authorization") String authorization,
+	@PostMapping("/post-all-DMT-new-set")
+	public List<Advert> postAllAdvertsDBWithDMTProfileNewSet(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version,
 			@RequestHeader("Content-Type") String contentType) {
-		return this.advertService.postAllAdvertFromDBWithDaniProfileNewSet(authorization, version, contentType);
+		return this.advertService.postAllAdvertFromDBWithDMTProfileNewSet(authorization, version, contentType);
 	}
 
 

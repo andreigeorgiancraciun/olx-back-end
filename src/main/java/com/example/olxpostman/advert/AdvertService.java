@@ -42,7 +42,7 @@ public class AdvertService {
 		this.imageForDaniNewSetRepository = imageForDaniNewSetRepository;
 	}
 
-	public Advert postAdvertFromDB(String authorization, String version, String contentType, Long id) throws JsonProcessingException {
+	public Advert postAdvertFromDB(String authorization, String version, String contentType, Long id) {
 
 		Advert advert = advertRepository.findById(id)
 				.orElseThrow(AdvertNotFoundResponseStatusException::new);
@@ -50,44 +50,22 @@ public class AdvertService {
 		setImages(advert);
 
 		ObjectMapper ow = new ObjectMapper();
-		String advertJSON = ow.writeValueAsString(advert);
-		return olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
-	}
+		try {
+			String advertJSON = ow.writeValueAsString(advert);
+			olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 
-	private void setImages(Advert advert) {
-		List<Image> images = imageRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<Image> randomSeries = images.subList(0, randomSeriesLength);
-		advert.setImages(randomSeries);
-	}
-
-	private void setImagesForDaniProfile(Advert advert) {
-		List<ImageForDani> images = imageForDaniRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<ImageForDani> randomSeries = images.subList(0, randomSeriesLength);
-		List<Image> randomImages = randomSeries.stream()
-				.map(Image::new)
-				.collect(Collectors.toList());
-		advert.setImages(randomImages);
-	}
-
-	private void setImagesForDaniProfileNewProfile(Advert advert) {
-		List<ImageForDaniNewSet> images = imageForDaniNewSetRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<ImageForDaniNewSet> randomSeries = images.subList(0, randomSeriesLength);
-		List<Image> randomImages = randomSeries.stream()
-				.map(Image::new)
-				.collect(Collectors.toList());
-		advert.setImages(randomImages);
+		return advert;
 	}
 
 	public List<Advert> postAllAdvertFromDB(String authorization, String version, String contentType) {
 		List<Advert> adverts = advertRepository.findAll();
 
 		adverts.forEach((advert -> {
+			Contact contactDaniProfile = contactRepository.findById(2L).orElseThrow();
+			advert.setContact(contactDaniProfile);
 			setImages(advert);
 
 			ObjectMapper ow = new ObjectMapper();
@@ -122,14 +100,13 @@ public class AdvertService {
 		return adverts;
 	}
 
-
-	public List<Advert> postAllAdvertFromDBWithDaniProfileNewSet(String authorization, String version, String contentType) {
+	public List<Advert> postAllAdvertFromDBWithDMTProfileNewSet(String authorization, String version, String contentType) {
 		List<Advert> adverts = advertRepository.findAll();
 
 		adverts.forEach((advert -> {
-			Contact contactDaniProfile = contactRepository.findById(1L).orElseThrow();
+			Contact contactDaniProfile = contactRepository.findById(2L).orElseThrow();
 			advert.setContact(contactDaniProfile);
-			setImagesForDaniProfileNewProfile(advert);
+			setImagesForDMTProfileNewProfile(advert);
 
 			ObjectMapper ow = new ObjectMapper();
 			try {
@@ -165,5 +142,35 @@ public class AdvertService {
 		});
 
 		return adverts;
+	}
+
+	private void setImages(Advert advert) {
+		List<Image> images = imageRepository.findAll();
+		Collections.shuffle(images);
+		int randomSeriesLength = 8;
+		List<Image> randomSeries = images.subList(0, randomSeriesLength);
+		advert.setImages(randomSeries);
+	}
+
+	private void setImagesForDaniProfile(Advert advert) {
+		List<ImageForDani> images = imageForDaniRepository.findAll();
+		Collections.shuffle(images);
+		int randomSeriesLength = 8;
+		List<ImageForDani> randomSeries = images.subList(0, randomSeriesLength);
+		List<Image> randomImages = randomSeries.stream()
+				.map(Image::new)
+				.collect(Collectors.toList());
+		advert.setImages(randomImages);
+	}
+
+	private void setImagesForDMTProfileNewProfile(Advert advert) {
+		List<ImageForDaniNewSet> images = imageForDaniNewSetRepository.findAll();
+		Collections.shuffle(images);
+		int randomSeriesLength = 8;
+		List<ImageForDaniNewSet> randomSeries = images.subList(0, randomSeriesLength);
+		List<Image> randomImages = randomSeries.stream()
+				.map(Image::new)
+				.collect(Collectors.toList());
+		advert.setImages(randomImages);
 	}
 }
