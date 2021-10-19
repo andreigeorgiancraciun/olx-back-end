@@ -15,7 +15,7 @@
 	<description>OLX Bot with postman</description>
 	<packaging>war</packaging>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 		<start-class>com.example.olxpostman.OlxPostmanApplication</start-class>
 	</properties>
 	<dependencies>
