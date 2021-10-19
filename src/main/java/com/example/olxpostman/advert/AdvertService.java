@@ -32,7 +32,9 @@ public class AdvertService {
 
 	public AdvertService(OlxFeignClient olxFeignClient,
 			AdvertRepository advertRepository,
-			ImageRepository imageRepository, ImageForDaniRepository imageForDaniRepository, ContactRepository contactRepository,
+			ImageRepository imageRepository,
+			ImageForDaniRepository imageForDaniRepository,
+			ContactRepository contactRepository,
 			ImageForDaniNewSetRepository imageForDaniNewSetRepository) {
 		this.olxFeignClient = olxFeignClient;
 		this.advertRepository = advertRepository;
