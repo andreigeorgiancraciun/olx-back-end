@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:14.0-alpine
+    restart: on-failure
+    environment:
+        POSTGRES_PASSWORD: olx!@#
+        POSTGRES_USER: olx
+        POSTGRES_DB: olx
+    ports:
+          - "2345:5432"
+    volumes:
+        - postgres-data:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "3"
+        max-size: "5m"
+  back-end:
+    image: andreicraciun/olx
+    depends_on:
+      - database
+    ports:
+      - "8095:8080"
+    logging:
+        driver: "json-file"
+        options:
+          max-file: "3"
+          max-size: "5m"
+volumes:
+  postgres-data:
