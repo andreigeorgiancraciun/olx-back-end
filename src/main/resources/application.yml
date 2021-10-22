@@ -6,11 +6,11 @@ spring:
           custom-client:
             client-id: 200207
             client-secret: L7qNpn82k20jiuOOxkvHxi2m4ZBkzOH5K5gdJIXmItSqJ7L1
-            client-name: OLX
+            client-name: olx
             scope: read write v2
             provider: olx-provider
-            redirect-uri: /oauth2/authorization/olx
-            client-authentication-method: basic
+            redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
+            client-authentication-method: CLIENT_SECRET_BASIC
             authorization-grant-type: authorization_code
         provider:
           olx-provider:
@@ -26,5 +26,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL82Dialect
 server:
   port: 8888
