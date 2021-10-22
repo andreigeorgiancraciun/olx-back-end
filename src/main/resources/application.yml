@@ -18,6 +18,9 @@ spring:
             authorization-uri: https://www.olx.ro/api/open/oauth/authorize
             user-info-uri: https://www.olx.ro/api/open/user/me
             user-name-attribute: name
+    user:
+      name: andrei123
+      password: olx!@#
   datasource:
     url: jdbc:postgresql://localhost:5432/olx
     driver-class-name: org.postgresql.Driver
