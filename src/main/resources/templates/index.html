@@ -1,11 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-<h1>Spring Security SSO</h1>
-<a href="/oauth2/authorization/olx">Login</a>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+		<script type="text/javascript">
+			$.get("/user", function(data) {
+				$("#user").html(data.name);
+				$(".unauthenticated").hide()
+				$(".authenticated").show()
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container unauthenticated">
+			With GitHub: <a href="/oauth2/authorization/olx">click here</a>
+		</div>
+		<div class="container authenticated" style="display:none">
+			Logged in as: <span id="user"></span>
+		</div>
+	</body>
 </html>
