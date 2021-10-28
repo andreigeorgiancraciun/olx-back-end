@@ -3,11 +3,11 @@ spring:
     oauth2:
       client:
         registration:
-          custom-client:
+          olx:
             client-id: 200207
             client-secret: L7qNpn82k20jiuOOxkvHxi2m4ZBkzOH5K5gdJIXmItSqJ7L1
             client-name: olx
-            scope: read write v2
+            scope: read_write_v2
             provider: olx-provider
             redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
             client-authentication-method: CLIENT_SECRET_BASIC
