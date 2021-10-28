@@ -54,10 +54,10 @@ public class AdvertController {
 		return this.advertService.deleteAllAdvertFromDB(authorization, version);
 	}
 
-    @PutMapping("/update-db")
+   /* @PutMapping("/update-db")
     public Advert updateAdvert(@RequestHeader("Authorization") String authorization,
                                @RequestHeader("Version") String version,
                                @RequestHeader("Content-Type") String contentType) throws JsonProcessingException {
         return this.advertService.updateAdvert(authorization, version, contentType);
-    }
+    }*/
 }

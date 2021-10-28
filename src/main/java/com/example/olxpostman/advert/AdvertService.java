@@ -122,13 +122,13 @@ public class AdvertService {
 		return adverts;
 	}
 
-	public Advert updateAdvert(String authorization, String version, String contentType) throws JsonProcessingException {
+	/*public Advert updateAdvert(String authorization, String version, String contentType) throws JsonProcessingException {
 		Advert advert = advertRepository.findById(1L)
 				.orElseThrow(AdvertNotFoundResponseStatusException::new);
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String advertJSON = ow.writeValueAsString(advert);
 		return olxFeignClient.updateAdvert(authorization, version, contentType, advertJSON);
-	}
+	}*/
 
 	public List<Integer> deleteAllAdvertFromDB(String authorization, String version) {
 		List<Integer> adverts = List.of(
