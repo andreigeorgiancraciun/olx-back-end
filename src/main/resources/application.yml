@@ -7,16 +7,16 @@ spring:
             client-id: 200207
             client-secret: L7qNpn82k20jiuOOxkvHxi2m4ZBkzOH5K5gdJIXmItSqJ7L1
             client-name: olx
-            scope: read_write_v2
+            scope: [read,write,v2]
             provider: olx-provider
             redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
             client-authentication-method: CLIENT_SECRET_BASIC
             authorization-grant-type: authorization_code
         provider:
           olx-provider:
-            token-uri: https://www.olx.ro/api/open/oauth/token
-            authorization-uri: https://www.olx.ro/api/open/oauth/authorize
-            user-info-uri: https://www.olx.ro/api/open/user/me
+            token-uri: https://www.olx.ro/oauth/token
+            authorization-uri: https://www.olx.ro/oauth/authorize
+            user-info-uri: https://www.olx.ro/user/me
             user-name-attribute: name
     user:
       name: andrei123
