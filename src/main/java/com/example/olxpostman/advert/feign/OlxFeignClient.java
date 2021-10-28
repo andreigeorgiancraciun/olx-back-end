@@ -13,11 +13,11 @@ public interface OlxFeignClient {
                       @RequestHeader("Content-Type") String contentType,
                       @RequestBody String advert);
 
-    @PutMapping(value = "/adverts/220036912", consumes = "application/json", produces = "application/json")
+    /*@PutMapping(value = "/adverts/220036912", consumes = "application/json", produces = "application/json")
     Advert updateAdvert(@RequestHeader("Authorization") String authorization,
                         @RequestHeader("Version") String version,
                         @RequestHeader("Content-Type") String contentType,
-                        @RequestBody String advert);
+                        @RequestBody String advert);*/
 
 	@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
 	Advert deleteAdvert(@RequestHeader("Authorization") String authorization,
