@@ -60,10 +60,4 @@ public class AdvertController {
                                @RequestHeader("Content-Type") String contentType) throws JsonProcessingException {
         return this.advertService.updateAdvert(authorization, version, contentType);
     }
-
-    @GetMapping("/me")
-    public String getMyInformation(@RequestHeader("Authorization") String authorization,
-                                   @RequestHeader("Version") String version) {
-        return this.advertService.getMyInformation(authorization, version);
-    }
 }

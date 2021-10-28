@@ -19,10 +19,6 @@ public interface OlxFeignClient {
                         @RequestHeader("Content-Type") String contentType,
                         @RequestBody String advert);
 
-    @GetMapping(value = "/users/me")
-    String getMyInformation(@RequestHeader("Authorization") String authorization,
-                            @RequestHeader("Version") String version);
-
 	@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
 	Advert deleteAdvert(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version,

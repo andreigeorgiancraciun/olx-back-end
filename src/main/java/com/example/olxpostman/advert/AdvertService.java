@@ -130,10 +130,6 @@ public class AdvertService {
 		return olxFeignClient.updateAdvert(authorization, version, contentType, advertJSON);
 	}
 
-	public String getMyInformation(String authorization, String version) {
-		return olxFeignClient.getMyInformation(authorization, version);
-	}
-
 	public List<Integer> deleteAllAdvertFromDB(String authorization, String version) {
 		List<Integer> adverts = List.of(
 				225635274
