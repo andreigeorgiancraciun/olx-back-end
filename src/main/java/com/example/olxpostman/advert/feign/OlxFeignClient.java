@@ -19,8 +19,8 @@ public interface OlxFeignClient {
                         @RequestHeader("Content-Type") String contentType,
                         @RequestBody String advert);*/
 
-	@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
+	/*@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
 	Advert deleteAdvert(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version,
-			@PathVariable Integer id);
+			@PathVariable Integer id);*/
 }

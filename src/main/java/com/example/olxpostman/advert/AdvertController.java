@@ -18,13 +18,13 @@ public class AdvertController {
 
     }
 
-    @PostMapping("/single-post/{id}")
+    /*@PostMapping("/single-post/{id}")
     public Advert postSpecificAdvertDB(@RequestHeader("Authorization") String authorization,
                                        @RequestHeader("Version") String version,
                                        @RequestHeader("Content-Type") String contentType,
                                        @PathVariable Long id) {
         return this.advertService.postAdvertFromDB(authorization, version, contentType, id);
-    }
+    }*/
 
     @PostMapping("/post-all-dmt")
     public List<Advert> postAllAdvertsDB(@RequestHeader("Authorization") String authorization,
@@ -48,11 +48,11 @@ public class AdvertController {
 	}
 
 
-	@DeleteMapping("/delete-all")
+	/*@DeleteMapping("/delete-all")
 	public List<Integer> deleteAllAdverts(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version) {
 		return this.advertService.deleteAllAdvertFromDB(authorization, version);
-	}
+	}*/
 
    /* @PutMapping("/update-db")
     public Advert updateAdvert(@RequestHeader("Authorization") String authorization,

@@ -130,7 +130,7 @@ public class AdvertService {
 		return olxFeignClient.updateAdvert(authorization, version, contentType, advertJSON);
 	}*/
 
-	public List<Integer> deleteAllAdvertFromDB(String authorization, String version) {
+	/*public List<Integer> deleteAllAdvertFromDB(String authorization, String version) {
 		List<Integer> adverts = List.of(
 				225635274
 		);
@@ -140,7 +140,7 @@ public class AdvertService {
 		});
 
 		return adverts;
-	}
+	}*/
 
 	private void setImages(Advert advert) {
 		List<Image> images = imageRepository.findAll();
