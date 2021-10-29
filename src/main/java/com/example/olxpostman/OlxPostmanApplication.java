@@ -20,10 +20,10 @@ import java.util.Map;
 @SpringBootApplication
 @EnableFeignClients
 @RestController
-public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
+public class OlxPostmanApplication {
 
 
-	@GetMapping("/user")
+	/*@GetMapping("/user")
 	public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
 		return Collections.singletonMap("name", principal.getAttribute("name"));
 	}
@@ -33,13 +33,13 @@ public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
 		String message = (String) request.getSession().getAttribute("error.message");
 		request.getSession().removeAttribute("error.message");
 		return message;
-	}
+	}*/
 
     public static void main(String[] args) {
         SpringApplication.run(OlxPostmanApplication.class, args);
     }
 
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
@@ -58,5 +58,5 @@ public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
 				)
 				.oauth2Login();
 		// @formatter:on
-	}
+	}*/
 }
