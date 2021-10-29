@@ -16,7 +16,7 @@ public class OlxPostmanApplication {
 		@RequestMapping("/logged")
 		@ResponseBody
 		public String welcome() {
-			return "login";
+			return "loginPP";
 		}
 
     public static void main(String[] args) {
