@@ -14,9 +14,9 @@ spring:
             authorization-grant-type: authorization_code
         provider:
           olx-provider:
-            token-uri: https://www.olx.ro/oauth/token
+            token-uri: https://www.olx.ro/api/open/oauth/token
             authorization-uri: https://www.olx.ro/oauth/authorize
-            user-info-uri: https://www.olx.ro/user/me
+            user-info-uri: https://www.olx.ro/api/partner/users/me
             user-name-attribute: name
     user:
       name: andrei123
