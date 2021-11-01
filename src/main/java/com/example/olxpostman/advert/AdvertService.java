@@ -13,7 +13,6 @@ import com.example.olxpostman.advert.model.images.ImageForDaniRepository;
 import com.example.olxpostman.advert.model.images.ImageRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
