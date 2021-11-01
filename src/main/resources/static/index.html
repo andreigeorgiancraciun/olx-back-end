@@ -16,17 +16,7 @@
 <body>
 <h1>Login</h1>
 <div class="container unauthenticated">
-	With GitHub: <a href="/oauth2/authorization/olx">click here</a>
+	With OLX: <a href="/oauth2/authorization/olx">Click here</a>
 </div>
-<div class="container authenticated" style="display: none">
-	Logged in as: <span id="user"></span>
-</div>
-<script type="text/javascript">
-	$.get("/user", function(data) {
-		$("#user").html(data.name);
-		$(".unauthenticated").hide()
-		$(".authenticated").show()
-	});
-</script>
 </body>
 </html>
