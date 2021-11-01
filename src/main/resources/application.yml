@@ -35,7 +35,8 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL82Dialect
 server:
+  servlet:
+    session:
+      cookie:
+        http-only: false
   port: 8888
-  session:
-    cookie:
-      name: UISESSION
