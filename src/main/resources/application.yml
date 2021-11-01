@@ -11,7 +11,7 @@ spring:
             client-name: olx
             scope: [read,write,v2]
             provider: olx-provider
-            redirect-uri: http://49.12.227.7:8095/auth/connect
+            redirect-uri: http://49.12.227.7/auth/connect
             client-authentication-method: CLIENT_SECRET_BASIC
             authorization-grant-type: authorization_code
         provider:
