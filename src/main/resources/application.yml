@@ -6,12 +6,12 @@ spring:
       client:
         registration:
           olx:
-            client-id: 200207
-            client-secret: L7qNpn82k20jiuOOxkvHxi2m4ZBkzOH5K5gdJIXmItSqJ7L1
+            client-id: 200136
+            client-secret: tmq8thGaySN21iPx4ysbC2te7hpsgvn6BM6kJispef6DS6PK
             client-name: olx
             scope: [v2,read,write]
             provider: olx-provider
-            redirect-uri: https://www.google.ro/
+            redirect-uri: http://49.12.227.7:8095/logged
             client-authentication-method: CLIENT_SECRET_BASIC
             authorization-grant-type: authorization_code
         provider:
