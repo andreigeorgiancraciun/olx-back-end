@@ -9,7 +9,7 @@ import java.security.Principal;
 @Controller
 public class WebController {
 
-	@RequestMapping("/logged")
+	@RequestMapping("/authorized/olx")
 	public String authConnect(Model model, Principal principal) {
 		return "auth";
 	}
