@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @SpringBootApplication
 @EnableFeignClients
 public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
@@ -23,7 +25,7 @@ public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
 				.exceptionHandling(e -> e
 						.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
 				)
-				.oauth2Login();
+				.oauth2Login(withDefaults());
 		// @formatter:on
 	}
 
