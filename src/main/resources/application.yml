@@ -9,10 +9,10 @@ spring:
           olx:
             client-id: 200136
             client-secret: tmq8thGaySN21iPx4ysbC2te7hpsgvn6BM6kJispef6DS6PK
-            client-authentication-method: basic
+            #client-authentication-method: basic
             authorization-grant-type: authorization_code
             redirect-uri: http://49.12.227.7:8095
-            scope: [v2,read,write]
+            scope: "read+write+v2"
             client-name: olx
             provider: olx-provider
         provider:
