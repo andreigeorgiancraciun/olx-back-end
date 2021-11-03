@@ -1,3 +1,6 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
 spring:
   security:
     oauth2:
@@ -19,9 +22,6 @@ spring:
             user-info-uri: https://www.olx.ro/api/partner/users/me
             user-info-authentication-method: header
             user-name-attribute: name
-    user:
-      name: andrei123
-      password: olx!@#
   datasource:
     url: jdbc:postgresql://localhost:5432/olx
     driver-class-name: org.postgresql.Driver
@@ -33,11 +33,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL82Dialect
-  thymeleaf:
-    cache: false
 server:
-  servlet:
-    session:
-      cookie:
-        http-only: false
   port: 8888
+
+
