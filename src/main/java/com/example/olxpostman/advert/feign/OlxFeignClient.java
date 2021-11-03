@@ -1,6 +1,6 @@
 package com.example.olxpostman.advert.feign;
 
-import com.example.olxpostman.advert.model.Advert;
+import com.example.olxpostman.advert.model.advert.Advert;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +13,18 @@ public interface OlxFeignClient {
                       @RequestHeader("Content-Type") String contentType,
                       @RequestBody String advert);
 
-    /*@PutMapping(value = "/adverts/220036912", consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/adverts/220036912", consumes = "application/json", produces = "application/json")
     Advert updateAdvert(@RequestHeader("Authorization") String authorization,
                         @RequestHeader("Version") String version,
                         @RequestHeader("Content-Type") String contentType,
-                        @RequestBody String advert);*/
+                        @RequestBody String advert);
 
-	/*@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/users/me")
+    String getMyInformation(@RequestHeader("Authorization") String authorization,
+                            @RequestHeader("Version") String version);
+
+	@DeleteMapping(value = "/adverts/{id}", consumes = "application/json", produces = "application/json")
 	Advert deleteAdvert(@RequestHeader("Authorization") String authorization,
 			@RequestHeader("Version") String version,
-			@PathVariable("id") Integer id);*/
+			@PathVariable("id") Integer id);
 }

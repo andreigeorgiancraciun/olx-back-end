@@ -1,5 +1,11 @@
-package com.example.olxpostman.advert.model;
+package com.example.olxpostman.advert.model.advert;
 
+import com.example.olxpostman.advert.model.Attribute;
+import com.example.olxpostman.advert.model.Description;
+import com.example.olxpostman.advert.model.Location;
+import com.example.olxpostman.advert.model.Price;
+import com.example.olxpostman.advert.model.Title;
+import com.example.olxpostman.advert.model.contact.Contact;
 import com.example.olxpostman.advert.model.images.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -62,4 +68,7 @@ public class Advert {
     @OneToMany
     @JoinColumn(name = "advert_id")
     private List<Attribute> attributes = null;
+
+	@JsonIgnore
+	private String advertType;
 }

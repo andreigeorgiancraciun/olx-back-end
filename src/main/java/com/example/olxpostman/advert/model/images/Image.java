@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @RequiredArgsConstructor
 @Data
 @Entity
-@Table(name = "images")
+@Table(name = "images_for_dmt_profile")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +39,10 @@ public class Image {
 	public Image(ImageForDaniNewSet imageForDaniNewSet) {
 		this.id = imageForDaniNewSet.getId();
 		this.url = imageForDaniNewSet.getUrl();
+	}
+
+	public Image(ImageForCasaModulara imageForCasaModulara) {
+		this.id = imageForCasaModulara.getId();
+		this.url = imageForCasaModulara.getUrl();
 	}
 }

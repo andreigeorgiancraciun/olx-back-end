@@ -21,4 +21,6 @@ public class Description {
 
 	@JsonValue
 	private String description;
+
+	private String type;
 }

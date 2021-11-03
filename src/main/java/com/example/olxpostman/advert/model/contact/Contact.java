@@ -1,4 +1,4 @@
-package com.example.olxpostman.advert.model;
+package com.example.olxpostman.advert.model.contact;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

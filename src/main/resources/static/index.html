@@ -41,7 +41,7 @@
 				}
 			}
 		});
-	$.get("https://www.olx.ro/api/partner/users/me", function(data) {
+	$.get("/advert/me", function(data) {
 		$("#user").html(data.name);
 		$(".unauthenticated").hide();
 		$(".authenticated").show();

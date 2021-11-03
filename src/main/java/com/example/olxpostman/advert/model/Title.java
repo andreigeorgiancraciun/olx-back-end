@@ -22,4 +22,6 @@ public class Title {
 
 	@JsonValue
 	private String title;
+
+	private String type;
 }
