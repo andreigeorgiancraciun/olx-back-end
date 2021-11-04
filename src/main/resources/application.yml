@@ -13,7 +13,6 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
             scope: read, write, v2
-
             client-name: olx
             provider: olx-provider
         provider:
