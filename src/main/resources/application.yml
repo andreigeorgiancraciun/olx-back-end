@@ -20,7 +20,7 @@ spring:
             authorization-uri: https://www.olx.ro/oauth/authorize
             token-uri: https://www.olx.ro/api/open/oauth/token
             user-info-uri: https://www.olx.ro/api/partner/users/me
-            user-name-attribute: email
+            user-name-attribute: user_name
   datasource:
     url: jdbc:postgresql://localhost:5432/olx
     driver-class-name: org.postgresql.Driver
