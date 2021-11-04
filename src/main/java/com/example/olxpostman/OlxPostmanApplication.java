@@ -11,9 +11,9 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @SpringBootApplication
 @EnableFeignClients
-public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
+public class OlxPostmanApplication {
 
-	@Override
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
@@ -32,7 +32,7 @@ public class OlxPostmanApplication extends WebSecurityConfigurerAdapter {
 				)
 				.oauth2Login();
 		// @formatter:on
-	}
+	}*/
 
 	public static void main(String[] args) {
         SpringApplication.run(OlxPostmanApplication.class, args);
