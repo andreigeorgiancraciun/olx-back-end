@@ -11,7 +11,7 @@ spring:
             client-secret: tmq8thGaySN21iPx4ysbC2te7hpsgvn6BM6kJispef6DS6PK
             client-authentication-method: client_secret_basic
             authorization-grant-type: authorization_code
-            redirect-uri: http://49.12.227.7:8095/login/oauth2/code/
+            redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
             scope: read, write, v2
             client-name: olx
             provider: olx-provider
@@ -32,7 +32,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL82Dialect
+  thymeleaf:
+    cache: false
 server:
   port: 8888
+  servlet:
+    session:
+      cookie:
+        name: UISESSION
 
 
