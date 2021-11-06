@@ -90,6 +90,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<jvmArguments>
+						-Dhttps.proxyHost=proxy.sys.net -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy.sys.net -Dhttp.proxyPort=8080 -Dhttps.proxySet=true
+					</jvmArguments>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
