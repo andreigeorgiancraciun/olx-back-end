@@ -10,7 +10,7 @@ spring:
             client-id: 200136
             client-secret: tmq8thGaySN21iPx4ysbC2te7hpsgvn6BM6kJispef6DS6PK
             authorization-grant-type: authorization_code
-            client-authentication-method: client_secret_post
+            client-authentication-method: client_secret_basic
             redirect-uri: http://49.12.227.7:8095/login/oauth2/code/olx
             scope: read, write, v2
             client-name: olx
