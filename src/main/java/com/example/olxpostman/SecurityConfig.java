@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		http.antMatcher("/**")
 				.authorizeRequests(a -> a
-						.antMatchers("/", "/login**",  "/error", "/webjars/**").permitAll()
+						.antMatchers("/", "/login/**",  "/error", "/webjars/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.exceptionHandling(e -> e
