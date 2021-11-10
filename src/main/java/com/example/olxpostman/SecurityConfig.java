@@ -70,9 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		SimpleUrlAuthenticationFailureHandler handler = new SimpleUrlAuthenticationFailureHandler("/");
 
 		// @formatter:off
-		http.antMatcher("/**")
+		http
 				.authorizeRequests(a -> a
-						.antMatchers("/", "/callback" ,"login/oauth2/code/olx/**",  "/error", "/webjars/**").permitAll()
+						.antMatchers("/", "/callback" ,"login/oauth2/code/**",  "/error", "/webjars/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.exceptionHandling(e -> e
