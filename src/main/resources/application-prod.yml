@@ -1,8 +1,0 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://database:5432/olx
-    driver-class-name: org.postgresql.Driver
-    username: olx
-    password: olx!@#
-server:
-      port: 8080
