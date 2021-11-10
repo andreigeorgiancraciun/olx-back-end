@@ -21,10 +21,10 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Configuration
 @EnableWebSecurity
@@ -72,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		http.antMatcher("/**")
 				.authorizeRequests(a -> a
-						.antMatchers("/", "/error", "/webjars/**").permitAll()
+						.antMatchers("/", "/login**",  "/error", "/webjars/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.exceptionHandling(e -> e
