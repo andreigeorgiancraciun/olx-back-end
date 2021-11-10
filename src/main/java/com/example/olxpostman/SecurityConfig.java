@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				)
 				.authorizeRequests()
-				.antMatchers("/", "/login/oauth2/code/olx").permitAll()
+				.antMatchers("/", "/login**","/callback/", "/webjars/**", "/error**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.oauth2Login();
