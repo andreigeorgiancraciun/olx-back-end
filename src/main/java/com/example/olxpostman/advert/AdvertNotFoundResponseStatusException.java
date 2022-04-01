@@ -1,4 +1,4 @@
-package com.example.olxpostman.advert.model;
+package com.example.olxpostman.advert;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

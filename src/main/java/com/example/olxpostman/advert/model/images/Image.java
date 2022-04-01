@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +18,10 @@ import javax.persistence.Table;
         "url"
 })
 
-@RequiredArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "images_for_dmt_profile")
+@Table(name = "images")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,18 +31,6 @@ public class Image {
     @JsonProperty("url")
     private String url;
 
-	public Image(ImageForDani imageForDani) {
-		this.id = imageForDani.getId();
-		this.url = imageForDani.getUrl();
-	}
-
-	public Image(ImageForDaniNewSet imageForDaniNewSet) {
-		this.id = imageForDaniNewSet.getId();
-		this.url = imageForDaniNewSet.getUrl();
-	}
-
-	public Image(ImageForCasaModulara imageForCasaModulara) {
-		this.id = imageForCasaModulara.getId();
-		this.url = imageForCasaModulara.getUrl();
-	}
+	@JsonIgnore
+	private String type;
 }

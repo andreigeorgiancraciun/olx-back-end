@@ -11,9 +11,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,7 +37,8 @@ import java.util.List;
         "price",
         "attributes"
 })
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "adverts")
 public class Advert {
@@ -40,11 +50,14 @@ public class Advert {
     @JsonProperty("title")
 	@ManyToOne
     private Title title;
+
     @JsonProperty("description")
 	@ManyToOne
     private Description description;
+
     @JsonProperty("category_id")
     private Integer categoryId;
+
     @JsonProperty("advertiser_type")
     private String advertiserType;
 
@@ -66,8 +79,8 @@ public class Advert {
 
     @JsonProperty("attributes")
     @OneToMany
-    @JoinColumn(name = "advert_id")
-    private List<Attribute> attributes = null;
+	@JoinColumn(name = "advert_id")
+	private List<Attribute> attributes = null;
 
 	@JsonIgnore
 	private String advertType;

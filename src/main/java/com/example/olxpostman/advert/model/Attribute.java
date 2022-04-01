@@ -1,20 +1,25 @@
 package com.example.olxpostman.advert.model;
 
-import com.example.olxpostman.advert.model.advert.Advert;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
         "code",
         "value"
 })
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "attributes")
 public class Attribute {
@@ -27,9 +32,4 @@ public class Attribute {
     private String code;
     @JsonProperty("value")
     private String value;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "advert_id")
-    private Advert advert;
 }

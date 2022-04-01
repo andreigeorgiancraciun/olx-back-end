@@ -2,86 +2,51 @@ package com.example.olxpostman.advert;
 
 import com.example.olxpostman.advert.feign.OlxFeignClient;
 import com.example.olxpostman.advert.model.advert.Advert;
-import com.example.olxpostman.advert.model.AdvertNotFoundResponseStatusException;
 import com.example.olxpostman.advert.model.advert.AdvertRepository;
 import com.example.olxpostman.advert.model.contact.Contact;
 import com.example.olxpostman.advert.model.contact.ContactRepository;
 import com.example.olxpostman.advert.model.images.Image;
-import com.example.olxpostman.advert.model.images.ImageForCasaModulara;
-import com.example.olxpostman.advert.model.images.ImageForCasaModularaRepository;
-import com.example.olxpostman.advert.model.images.ImageForDani;
-import com.example.olxpostman.advert.model.images.ImageForDaniNewSet;
-import com.example.olxpostman.advert.model.images.ImageForDaniNewSetRepository;
-import com.example.olxpostman.advert.model.images.ImageForDaniRepository;
 import com.example.olxpostman.advert.model.images.ImageRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AdvertService {
+	public static final String CASA_MODULARA = "casa-modulara";
 	private static final String CONTAINER = "container";
-	private static final String CASA = "casa";
+	public static final String DMT = "dmt";
+	public static final String DANI = "dani";
 
 	private final OlxFeignClient olxFeignClient;
 	private final AdvertRepository advertRepository;
 	private final ImageRepository imageRepository;
-	private final ImageForDaniRepository imageForDaniRepository;
 	private final ContactRepository contactRepository;
-	private final ImageForDaniNewSetRepository imageForDaniNewSetRepository;
-	private final ImageForCasaModularaRepository imageForCasaModularaRepository;
 
 	public AdvertService(OlxFeignClient olxFeignClient,
 			AdvertRepository advertRepository,
 			ImageRepository imageRepository,
-			ImageForDaniRepository imageForDaniRepository,
-			ContactRepository contactRepository,
-			ImageForDaniNewSetRepository imageForDaniNewSetRepository, ImageForCasaModularaRepository imageForCasaModularaRepository) {
+			ContactRepository contactRepository) {
 		this.olxFeignClient = olxFeignClient;
 		this.advertRepository = advertRepository;
 		this.imageRepository = imageRepository;
-		this.imageForDaniRepository = imageForDaniRepository;
 		this.contactRepository = contactRepository;
-		this.imageForDaniNewSetRepository = imageForDaniNewSetRepository;
-		this.imageForCasaModularaRepository = imageForCasaModularaRepository;
 	}
 
-	public List<Advert> postAllAdvertFromDBWithDMTProfile(String authorization, String version, String contentType) {
+	public List<Advert> postAdvertForDaniProfile(String authorization, String version, String contentType) {
 		List<Advert> adverts = advertRepository.findAllByAdvertType(CONTAINER);
-
 		adverts.forEach((advert -> {
-			Contact contactDMTProfile = contactRepository.findById(2L).orElseThrow();
-			advert.setContact(contactDMTProfile);
-			setImagesForDMT(advert);
-
-			ObjectMapper ow = new ObjectMapper();
-			try {
-				String advertJSON = ow.writeValueAsString(advert);
-				olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-		}));
-
-		return adverts;
-	}
-
-	public List<Advert> postAllAdvertFromDBWithDaniProfile(String authorization, String version, String contentType) {
-		List<Advert> adverts = advertRepository.findAllByAdvertType(CONTAINER);
-
-		adverts.forEach((advert -> {
-			Contact contactDaniProfile = contactRepository.findById(1L).orElseThrow();
-			advert.setContact(contactDaniProfile);
+			Contact contactIonescuDanProfile = getContactIonescuDanProfile();
+			advert.setContact(contactIonescuDanProfile);
 			setImagesForDaniProfile(advert);
 
 			ObjectMapper ow = new ObjectMapper();
 			try {
 				String advertJSON = ow.writeValueAsString(advert);
+				System.out.println(advertJSON);
 				olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -91,17 +56,17 @@ public class AdvertService {
 		return adverts;
 	}
 
-	public List<Advert> postAllAdvertFromDBWithDMTProfileNewSet(String authorization, String version, String contentType) {
+	public List<Advert> postAdvertForDmtProfile(String authorization, String version, String contentType) {
 		List<Advert> adverts = advertRepository.findAllByAdvertType(CONTAINER);
-
 		adverts.forEach((advert -> {
-			Contact contactDMTProfile = contactRepository.findById(2L).orElseThrow();
+			Contact contactDMTProfile = getContactDMTProfile();
 			advert.setContact(contactDMTProfile);
-			setImagesForDMTProfileNewProfile(advert);
+			setImagesForDmt(advert);
 
 			ObjectMapper ow = new ObjectMapper();
 			try {
 				String advertJSON = ow.writeValueAsString(advert);
+				System.out.println(advertJSON);
 				olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -111,17 +76,17 @@ public class AdvertService {
 		return adverts;
 	}
 
-	public List<Advert> postAllAdvertFromDBWithCasaModularaProfile(String authorization, String version, String contentType) {
-		List<Advert> adverts = advertRepository.findAllByAdvertType(CASA);
-
+	public List<Advert> postAdvertForCasaModularaProfile(String authorization, String version, String contentType) {
+		List<Advert> adverts = advertRepository.findAllByAdvertType(CASA_MODULARA);
 		adverts.forEach((advert -> {
-			Contact contactDaniProfile = contactRepository.findById(1L).orElseThrow();
-			advert.setContact(contactDaniProfile);
+			Contact contactIonescuDaniProfile = getContactIonescuDanProfile();
+			advert.setContact(contactIonescuDaniProfile);
 			setImagesForCasaModularaProfile(advert);
 
 			ObjectMapper ow = new ObjectMapper();
 			try {
 				String advertJSON = ow.writeValueAsString(advert);
+				System.out.println(advertJSON);
 				olxFeignClient.postAdvert(authorization, version, contentType, advertJSON);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -131,68 +96,31 @@ public class AdvertService {
 		return adverts;
 	}
 
-	public Advert updateAdvert(String authorization, String version, String contentType) throws JsonProcessingException {
-		Advert advert = advertRepository.findById(1L)
-				.orElseThrow(AdvertNotFoundResponseStatusException::new);
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		String advertJSON = ow.writeValueAsString(advert);
-		return olxFeignClient.updateAdvert(authorization, version, contentType, advertJSON);
+	private void setImagesForDaniProfile(Advert advert) {
+		shuffleImagesForSpecificProfile(DANI, advert);
 	}
 
-    public String getMyInformation(String authorization, String version) {
-		return olxFeignClient.getMyInformation(authorization, version);
+	private void setImagesForDmt(Advert advert) {
+		shuffleImagesForSpecificProfile(DMT, advert);
 	}
 
-	public List<Integer> deleteAllAdvertFromDB(String authorization, String version) {
-		List<Integer> adverts = List.of(
-				225635274
-		);
-
-		adverts.forEach(id -> {
-			olxFeignClient.deleteAdvert(authorization, version, id);
-		});
-
-		return adverts;
+	private void setImagesForCasaModularaProfile(Advert advert) {
+		shuffleImagesForSpecificProfile(CASA_MODULARA, advert);
 	}
 
-	private void setImagesForDMT(Advert advert) {
-		List<Image> images = imageRepository.findAll();
+	private void shuffleImagesForSpecificProfile(String profile, Advert advert) {
+		List<Image> images = imageRepository.findAllByType(profile);
 		Collections.shuffle(images);
 		int randomSeriesLength = 8;
 		List<Image> randomSeries = images.subList(0, randomSeriesLength);
 		advert.setImages(randomSeries);
 	}
 
-	private void setImagesForDaniProfile(Advert advert) {
-		List<ImageForDani> images = imageForDaniRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<ImageForDani> randomSeries = images.subList(0, randomSeriesLength);
-		List<Image> randomImages = randomSeries.stream()
-				.map(Image::new)
-				.collect(Collectors.toList());
-		advert.setImages(randomImages);
+	private Contact getContactIonescuDanProfile() {
+		return contactRepository.findById(1L).orElseThrow();
 	}
 
-	private void setImagesForDMTProfileNewProfile(Advert advert) {
-		List<ImageForDaniNewSet> images = imageForDaniNewSetRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<ImageForDaniNewSet> randomSeries = images.subList(0, randomSeriesLength);
-		List<Image> randomImages = randomSeries.stream()
-				.map(Image::new)
-				.collect(Collectors.toList());
-		advert.setImages(randomImages);
-	}
-
-	private void setImagesForCasaModularaProfile(Advert advert) {
-		List<ImageForCasaModulara> images = imageForCasaModularaRepository.findAll();
-		Collections.shuffle(images);
-		int randomSeriesLength = 8;
-		List<ImageForCasaModulara> randomSeries = images.subList(0, randomSeriesLength);
-		List<Image> randomImages = randomSeries.stream()
-				.map(Image::new)
-				.collect(Collectors.toList());
-		advert.setImages(randomImages);
+	private Contact getContactDMTProfile() {
+		return contactRepository.findById(2L).orElseThrow();
 	}
 }
